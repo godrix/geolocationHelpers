@@ -1,5 +1,5 @@
 {
-  "name": "geolocation-helpers",
+  "name": "geolocation-util",
   "version": "1.0.0",
   "description": "tools for work geolocation",
   "main": "index.js",
@@ -21,13 +21,15 @@
     "url": "https://github.com/godrix/geolocationHelpers/issues"
   },
   "homepage": "https://github.com/godrix/geolocationHelpers#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@types/jest": "^26.0.20",
     "jest": "26.6.3",
     "jest-extended": "0.11.5"
   },
-  "jest":{
-    "setupFilesAfterEnv":["jest-extended"]
+  "jest": {
+    "setupFilesAfterEnv": [
+      "jest-extended"
+    ]
   }
 }
