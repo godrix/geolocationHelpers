@@ -87,6 +87,8 @@ describe('getDistance', () => {
       expect(e).toBe('Only objects with numeric values are accepted');
     }
   });
+
+
 });
 
 describe('near', () => {
@@ -118,5 +120,28 @@ describe('measureDistance', () => {
   test('should returns a numeric value when passing an array of positions to the near method', () => {
     expect(measureDistance(arrayTheArrayLocations)).toBeNumber()
   });
+
+  test('should return an error with param coors not if array', ()=>{
+    try {
+      expect(measureDistance({cada:1})).toBeNumber()
+    } catch (error) {
+      expect(error).toBe('The received parameter is not an array')
+    }
+  })
+
+  test('should returns an error if the coordinate array is less than three elements', ()=>{
+    try {
+      expect(measureDistance([1,2])).toBeNumber()
+    } catch (error) {
+      expect(error).toBe('The coordinate array must have more than two elements')
+    }
+  })
+  test('should returns an error if the array not contain vallues valids', ()=>{
+    try {
+      expect(measureDistance([1,2,3])).toBeNumber()
+    } catch (error) {
+      expect(error).toBe('Array elements are not valid values')
+    }
+  })
 
 });

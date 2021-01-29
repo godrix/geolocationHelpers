@@ -28,7 +28,21 @@ function near(firstPoint, secondPoint, debound) {
 
 function measureDistance(coords) {
 
-    const totalKM = coords.reduce((total, current, index, array) => {
+    if(!(Array.isArray(coords))){
+        throw 'The received parameter is not an array'
+    }
+
+    if(coords.length < 3){
+        throw 'The coordinate array must have more than two elements'
+    }
+
+    const checkLocations = coords.filter(i => normalizeGeolocation(i))
+
+    if(!(!!checkLocations.length)){
+        throw 'Array elements are not valid values'
+    }
+
+    const totalKM = checkLocations.reduce((total, current, index, array) => {
         if (index === array.length - 1) {
             return total
         } else {
@@ -40,7 +54,7 @@ function measureDistance(coords) {
 }
 
 function measureDistanceGeoJSON(coords) {
-    // no formato geoJson a longitude vem primeiro do que a latitude, por isso ele deve ser invertido
+    // But, why? In geojson format, in the geolocation array, longitude comes first than latitude
     const geoCoords = coords.map(item => item.reverse());
     measureDistanceGeoJSON(geoCoords)
 }
